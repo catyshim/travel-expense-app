@@ -51,7 +51,7 @@ export class ExpenseService {
 
   loadRates(): void {
     if (Object.keys(this.rates).length > 0) return;
-    this.getRates().subscribe(data => {
+    this.getRates().subscribe((data) => {
       this.rates = data;
     });
   }

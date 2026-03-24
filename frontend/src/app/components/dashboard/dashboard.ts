@@ -8,12 +8,12 @@ import { ExpenseService, Summary } from '../../services/expense';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss'
+  styleUrl: './dashboard.scss',
 })
 export class DashboardComponent implements OnInit {
   summary: Summary = {
     total: 0,
-    byCategory: {}
+    byCategory: {},
   };
 
   budget: number = 2000;
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public expenseService: ExpenseService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadSummary() {
-    this.expenseService.getSummary().subscribe(data => {
+    this.expenseService.getSummary().subscribe((data) => {
       this.summary = data;
       this.remaining = this.budget - data.total;
       this.categories = Object.keys(data.byCategory);

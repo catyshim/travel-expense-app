@@ -4,61 +4,51 @@
   <div class="currency-selector">
     <label>Display Currency:</label>
     <select [(ngModel)]="expenseService.selectedCurrencyExpenses">
-      <option *ngFor="let currency of expenseService.currencies" [value]="currency">{{ currency }}</option>
+      <option *ngFor="let currency of expenseService.currencies" [value]="currency">
+        {{ currency }}
+      </option>
     </select>
   </div>
 
   <div class="add-expense-form">
     <h2>Add Expense</h2>
-    
+
     <div class="form-fields">
-        <div class="field">
+      <div class="field">
         <label>Amount <span class="required">* (Required)</span></label>
         <div class="amount-input">
-            <span>{{ expenseService.selectedCurrencyExpenses }}</span>
-            <input 
-            type="number" 
-            placeholder="0.00" 
-            step="0.01"
-            [(ngModel)]="newExpense.amount" 
-            />
+          <span>{{ expenseService.selectedCurrencyExpenses }}</span>
+          <input type="number" placeholder="0.00" step="0.01" [(ngModel)]="newExpense.amount" />
         </div>
-        </div>
+      </div>
 
-        <div class="field">
+      <div class="field">
         <label>Category <span class="required">* (Required)</span></label>
         <select [(ngModel)]="newExpense.category">
-            <option value="" disabled>Select category</option>
-            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          <option value="" disabled>Select category</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
         </select>
-        </div>
+      </div>
 
-        <div class="field">
+      <div class="field">
         <label>Date <span class="required">* (Required)</span></label>
-        <input 
-            type="date" 
-            [(ngModel)]="newExpense.date" 
-        />
-        </div>
+        <input type="date" [(ngModel)]="newExpense.date" />
+      </div>
 
-        <div class="field">
+      <div class="field">
         <label>Note</label>
-        <input 
-            type="text" 
-            placeholder="(Optional)" 
-            [(ngModel)]="newExpense.note" 
-        />
-        </div>
+        <input type="text" placeholder="(Optional)" [(ngModel)]="newExpense.note" />
+      </div>
     </div>
 
     <button (click)="addExpense()">Add Expense</button>
-    </div>
+  </div>
 
   <div class="expenses-list">
     <h2>All Expenses</h2>
-    
+
     <p *ngIf="expenses.length === 0">No expenses yet!</p>
-    
+
     <div class="expense-item" *ngFor="let expense of expenses">
       <div class="expense-details">
         <span class="category">{{ expense.category }}</span>
@@ -66,7 +56,10 @@
         <span class="note">{{ expense.note }}</span>
       </div>
       <div class="expense-right">
-        <span class="amount">{{ expenseService.convertAmount(expense.amount, expenseService.selectedCurrencyExpenses) | currency: expenseService.selectedCurrencyExpenses }}</span>
+        <span class="amount">{{
+          expenseService.convertAmount(expense.amount, expenseService.selectedCurrencyExpenses)
+            | currency: expenseService.selectedCurrencyExpenses
+        }}</span>
         <button (click)="deleteExpense(expense.id!)">Delete</button>
       </div>
     </div>

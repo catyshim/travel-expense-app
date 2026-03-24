@@ -106,22 +106,25 @@
     overflow: hidden;
 
     .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #27ae60, #55efc4);
-    border-radius: 4px;
-    transition: width 0.4s ease;
-    animation: fillBar 1s ease forwards;
-    width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #27ae60, #55efc4);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+      animation: fillBar 1s ease forwards;
+      width: 0;
 
-    &.over-budget {
-    background:#e85e5e
-    }
+      &.over-budget {
+        background: #e85e5e;
+      }
     }
 
     @keyframes fillBar {
-    from { width: 0; }
-    to { width: var(--target-width); }
+      from {
+        width: 0;
+      }
+      to {
+        width: var(--target-width);
+      }
     }
-    }
+  }
 }
-

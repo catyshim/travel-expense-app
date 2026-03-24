@@ -8,7 +8,7 @@ import { ExpenseService, Expense } from '../../services/expense';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './expenses.html',
-  styleUrl: './expenses.scss'
+  styleUrl: './expenses.scss',
 })
 export class ExpensesComponent implements OnInit {
   expenses: Expense[] = [];
@@ -17,14 +17,14 @@ export class ExpensesComponent implements OnInit {
     amount: 0,
     category: '',
     date: '',
-    note: ''
+    note: '',
   };
 
   categories = ['Food', 'Transport', 'Hotel', 'Activities', 'Shopping', 'Other'];
 
   constructor(
     public expenseService: ExpenseService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class ExpensesComponent implements OnInit {
   }
 
   loadExpenses() {
-    this.expenseService.getExpenses().subscribe(data => {
+    this.expenseService.getExpenses().subscribe((data) => {
       this.expenses = data;
       this.cdr.detectChanges();
     });

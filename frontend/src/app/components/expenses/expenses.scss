@@ -70,11 +70,12 @@
     }
 
     .required {
-        color: #e74c3c;
-        }
+      color: #e74c3c;
+    }
   }
 
-  input, select {
+  input,
+  select {
     padding: 10px 14px;
     border: 1px solid #e0d9f0;
     border-radius: 8px;
@@ -101,7 +102,6 @@
     font-weight: 600;
     transition: opacity 0.2s ease;
     margin-top: 8px;
-    
 
     &:hover {
       opacity: 0.8;
