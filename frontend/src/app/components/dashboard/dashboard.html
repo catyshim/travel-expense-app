@@ -1,0 +1,45 @@
+<div class="dashboard-container">
+  <h1>Trip Dashboard</h1>
+
+  <div class="currency-selector">
+    <label>Display Currency:</label>
+    <select [(ngModel)]="expenseService.selectedCurrencyDashboard">
+      <option *ngFor="let currency of expenseService.currencies" [value]="currency">{{ currency }}</option>
+    </select>
+  </div>
+
+  <div class="summary-cards">
+    <div class="card">
+      <h3>Total Budget</h3>
+      <p>{{ expenseService.convertAmount(budget, expenseService.selectedCurrencyDashboard) | currency: expenseService.selectedCurrencyDashboard }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Total Spent</h3>
+      <p>{{ expenseService.convertAmount(summary.total, expenseService.selectedCurrencyDashboard) | currency: expenseService.selectedCurrencyDashboard }}</p>
+    </div>
+
+    <div class="card" [class.danger]="remaining < 0">
+      <h3>Remaining</h3>
+      <p>{{ expenseService.convertAmount(remaining, expenseService.selectedCurrencyDashboard) | currency: expenseService.selectedCurrencyDashboard }}</p>
+    </div>
+  </div>
+
+  <div class="category-breakdown">
+    <h2>Spending by Category</h2>
+
+    <p *ngIf="categories.length === 0">No expenses yet!</p>
+
+    <div class="category-item" *ngFor="let cat of categories">
+      <span class="cat-name">{{ cat }}</span>
+      <span class="cat-amount">{{ expenseService.convertAmount(summary.byCategory[cat], expenseService.selectedCurrencyDashboard) | currency: expenseService.selectedCurrencyDashboard }}</span>
+      <div class="progress-bar">
+        <div 
+            class="progress-fill"
+            [class.over-budget]="isOverBudget(summary.byCategory[cat])"
+            [style.--target-width]="(summary.byCategory[cat] / budget) * 100 + '%'">
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
